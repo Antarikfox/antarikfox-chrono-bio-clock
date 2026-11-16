@@ -1,5 +1,9 @@
 name: Publish validated release
 on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/release.yml'
   workflow_dispatch:
 permissions:
   contents: write
@@ -13,10 +17,16 @@ jobs:
           node-version: '22'
       - run: npm run check
       - run: npm run build
+      - run: git diff --exit-code -- dist/ docs/preview.html
       - uses: hacs/action@main
         with:
           category: plugin
       - name: Publish v1.2.0
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh release create v1.2.0 dist/antarikfox-chrono-bio-clock.js --target "$GITHUB_SHA" --title "CHRONO / 03 BIO v1.2.0" --notes-file RELEASE_NOTES.md
+        run: |
+          if gh release view v1.2.0 >/dev/null 2>&1; then
+            echo "Release v1.2.0 already exists; leaving it unchanged."
+          else
+            gh release create v1.2.0 dist/antarikfox-chrono-bio-clock.js --target "$GITHUB_SHA" --title "CHRONO / 03 BIO v1.2.0" --notes-file RELEASE_NOTES.md
+          fi
