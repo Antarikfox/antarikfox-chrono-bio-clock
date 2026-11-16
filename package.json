@@ -1,0 +1,8 @@
+{
+  "name": "antarikfox-chrono-bio-clock",
+  "version": "1.2.0",
+  "private": true,
+  "description": "CHRONO / 03 BIO clock card for Home Assistant — by Antarikfox",
+  "scripts": { "build": "node build.mjs", "test": "node --test tests/*.test.cjs", "check": "node --check src/clock.js && npm test" },
+  "license": "MIT"
+}
