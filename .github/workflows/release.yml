@@ -1,0 +1,22 @@
+name: Publish validated release
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm run check
+      - run: npm run build
+      - uses: hacs/action@main
+        with:
+          category: plugin
+      - name: Publish v1.2.0
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create v1.2.0 dist/antarikfox-chrono-bio-clock.js --target "$GITHUB_SHA" --title "CHRONO / 03 BIO v1.2.0" --notes-file RELEASE_NOTES.md
