@@ -34,18 +34,25 @@ The time and date are live. The case illustration is static. The digits use a pu
 
 ## Install through HACS
 
-Until this repository is included in the default catalog, add it as a **custom repository**:
-
-1. In HACS, open **⋮ → Custom repositories**.
-2. Paste this repository's GitHub URL and choose **Dashboard** (called **Lovelace** in some versions).
-3. Find **CHRONO / 03 BIO Clock — by Antarikfox**, download it and refresh your browser.
-4. If HACS has not registered the resource, add it manually as a **JavaScript module**:
+1. Open **HACS** in Home Assistant and **search for CHRONO / 03 BIO in HACS**.
+2. Open **CHRONO / 03 BIO Clock — by Antarikfox** from the default catalog and select **Download**.
+3. Refresh your Home Assistant dashboard. If HACS has not registered the resource automatically, add it as a **JavaScript module**:
 
    ```text
    /hacsfiles/antarikfox-chrono-bio-clock/antarikfox-chrono-bio-clock.js
    ```
 
-5. Add a **Manual** card with the configuration below. Do not register both the HACS and manual-install resources at the same time.
+4. Add a **Manual** card using the configuration below. Do not register both the HACS resource and the manually installed `/local` resource.
+
+### Fallback: add as a custom repository
+
+If the clock does not appear in HACS search, you can still install it as a custom repository:
+
+1. In HACS, open **⋮ → Custom repositories**.
+2. Paste `https://github.com/Antarikfox/antarikfox-chrono-bio-clock` and select **Dashboard** (called **Lovelace** in some versions).
+3. Find **CHRONO / 03 BIO Clock — by Antarikfox**, download it, and refresh your browser.
+
+The custom-repository method is a fallback; use normal HACS search whenever possible.
 
 ## Manual installation
 
